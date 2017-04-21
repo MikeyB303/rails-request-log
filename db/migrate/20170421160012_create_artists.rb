@@ -3,7 +3,7 @@ class CreateArtists < ActiveRecord::Migration[5.0]
     create_table :artists do |t|
       t.string :name, null: false
 
-      t.timestamps null: false
+      t.timestamps
     end
   end
 end
