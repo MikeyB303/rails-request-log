@@ -7,7 +7,7 @@ class CreateRequests < ActiveRecord::Migration[5.0]
       t.integer :source_id, null: false
       t.boolean :in_system?
 
-      t.timestamps null: false
+      t.timestamps
     end
   end
 end

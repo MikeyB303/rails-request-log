@@ -3,7 +3,7 @@ class CreateGenres < ActiveRecord::Migration[5.0]
     create_table :genres do |t|
       t.string :title, null: false
 
-      t.timestamps null: false
+      t.timestamps
     end
   end
 end
