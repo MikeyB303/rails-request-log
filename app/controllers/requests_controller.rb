@@ -7,21 +7,20 @@ class RequestsController < ApplicationController
   end
 
   def create
-    artist = new_artist_or_nah(params[:artist])
-    song = new_song_or_nah(params[:song])
-    genre = new_genre_or_nah(params[:genre])
-    source = new_source_or_nah(params[:source])
-
+    artist = new_artist_or_nah(params[:requests][:artist])
+    song = new_song_or_nah(params[:requests][:song])
+    genre = new_genre_or_nah(params[:requests][:genre])
+    source = new_source_or_nah(params[:requests][:source])
 
     request_params = {
-      :song_id => song.id,
-      :artist_id => artist.id,
-      :genre_id => genre.id,
-      :source_id => source.id,
-      :in_system? => params[:library?]
-    }
-    request = Request.create(request_params)
-    redirect_to requests_route
+    :song_id => song.id,
+    :artist_id => artist.id,
+    :genre_id => genre.id,
+    :source_id => source.id,
+    :in_system? => params[:requests][:in_library]
+  }
+  request = Request.create(request_params)
+  redirect_to root_path  
   end
 
   private

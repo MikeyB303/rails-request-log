@@ -1,14 +1,14 @@
-<div class="container" >
-  <h1>New Request</h1>
-  <form method="post" action="/requests">
-    Artist: <input type="text" name="artist"><br>
-    Song: <input type="text" name="song"><br>
-    Genre: <input type="text" name="genre"><br>
-    Source: <input type="text" name="source"><br>
-    In Library? <select name="library?">
-      <option value="true">True</option>
-      <option value="false">False</option>
-    </select><br>
-    <input type="submit" value="Submit" />
-  </form>
-</div>
+<h1>Input new request!</h1>
+<%= form_for :requests, url: requests_path do |f| %>
+    <%= label_tag(:artist, "Artist:")%>
+        <%= f.text_field :artist%>
+    <%= label_tag(:song, "Song:")%>
+        <%= f.text_field :song%>
+    <%= label_tag(:genre, "Genre:")%>
+        <%= f.text_field :genre%>
+    <%= label_tag(:source, "Source:")%>
+        <%= f.text_field :source%> 
+    <%= label_tag(:in_library?, "In Library?:")%>
+        <%= f.select(:in_library?, %w[true false])%>
+    <%= f.submit %>                           
+<% end %>
