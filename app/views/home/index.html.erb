@@ -1,10 +1,4 @@
-<div class="container">
-  <div class="button">
-    <form id="new-request-button" action="/requests/new">
-      <input type="submit" value="Input New Request" />
-    </form>
-  </div>
-  <form id="check-request-button" action="/requests">
-    <input type="submit" value="Check Request Data" />
-  </form>
+<div class="container row">
+  <%= link_to "Input New Request", new_request_path, class: 'waves-effect waves-light btn-large center col s12' %> <br>
+  <%= link_to "Check Request Log", requests_path, class: 'waves-effect waves-light btn-large center col s12' %>
 </div> 
