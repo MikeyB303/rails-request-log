@@ -18,7 +18,7 @@
           <td> <%= (Genre.find_by id: request.genre_id).title %> </td>
           <td> <%= (Source.find_by id: request.source_id).name %> </td>
           <td> <%= request.in_system? %> </td>
-          <td> <%= request.created_at %> </td>
+          <td> <%= request.created_at.ctime %> </td>
         </tr>
       <% end %>
     </tbody>
