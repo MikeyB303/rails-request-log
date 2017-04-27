@@ -1,16 +1,23 @@
 
 <div class="row">
-  <h1 class="center-align"><%= @month %> Request Log</h1>
+  <h1 class="center-align"><%="#{@month} #{@year}"%> Requests</h1>
   <br>
-  <div class="col s2">
-    <label>Check previous request log</label>
-    <select>
-      <option value="" disabled selected></option>
-      <option value="1">Option 1</option>
-      <option value="2">Option 2</option>
-      <option value="3">Option 3</option>
-    </select>
-  </div>
+  <form class="col s12" action='/requests' method='GET'>
+    <div class="row">
+      <div class="col s2">
+        <select>
+          <option value="" disabled selected>View previous log</option>
+          <% @logs.each do |log| %>
+            <option value=<%=log.id%>><%="#{Date::MONTHNAMES[log.month.to_i]} #{log.year}"%></option>
+          <% end %>  
+        </select>
+        <label>Materialize Select</label>
+      </div>
+    </div>
+    <button class="btn waves-effect waves-light" type="submit" name="action" value='coolguy'>Filter!
+      <i class="material-icons right">send</i>
+    </button>
+  </form>
   <table class="striped centered">
     <thead>
       <tr>

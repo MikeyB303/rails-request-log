@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170421160149) do
+ActiveRecord::Schema.define(version: 20170427164134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,14 +27,22 @@ ActiveRecord::Schema.define(version: 20170421160149) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "requests", force: :cascade do |t|
-    t.integer  "song_id",    null: false
-    t.integer  "artist_id",  null: false
-    t.integer  "genre_id",   null: false
-    t.integer  "source_id",  null: false
-    t.boolean  "in_system?"
+  create_table "requestlogs", force: :cascade do |t|
+    t.string   "month",      null: false
+    t.string   "year",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.integer  "song_id",       null: false
+    t.integer  "artist_id",     null: false
+    t.integer  "genre_id",      null: false
+    t.integer  "source_id",     null: false
+    t.integer  "requestlog_id", null: false
+    t.boolean  "in_system?"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "songs", force: :cascade do |t|

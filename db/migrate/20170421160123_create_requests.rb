@@ -5,6 +5,7 @@ class CreateRequests < ActiveRecord::Migration[5.0]
       t.integer :artist_id, null: false
       t.integer :genre_id, null: false
       t.integer :source_id, null: false
+      t.integer :requestlog_id, null: false
       t.boolean :in_system?
 
       t.timestamps
