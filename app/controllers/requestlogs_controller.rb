@@ -1,7 +1,7 @@
-class RequestsController < ApplicationController
+class RequestlogsController < ApplicationController
   def index
     current_log = new_log_or_nah(Time.now.month, Time.now.year)
-    redirect_to request_path(current_log)
+    redirect_to requestlog_path(current_log)
   end
 
   def new
@@ -23,7 +23,7 @@ class RequestsController < ApplicationController
     :in_system? => params[:requests][:in_library]
   }
   request = Request.create(request_params)
-  redirect_to requests_path  
+  redirect_to requestlogs_path  
   end
 
   def show

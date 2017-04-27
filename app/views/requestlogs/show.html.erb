@@ -1,6 +1,6 @@
 <div class="row">
   <h1 class="center-align">
-    <% if @current_log == Requestlog.last %>
+    <% if @current_log == Requestlog.last && @current_log == Requestlog.first  %>
       <%="#{@month} #{@year}"%> Requests
     <% elsif @current_log == Requestlog.last %>
       <a href="<%= (@current_log.id - 1) %>"><i class="material-icons">chevron_left</i></a>
