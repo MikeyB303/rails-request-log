@@ -1,13 +1,15 @@
-<h1 class="center-align"><%= @month %> Request Log</h1>
-  <div class="input-field col s12">
+
+<div class="row">
+  <h1 class="center-align"><%= @month %> Request Log</h1>
+  <br>
+  <div class="col s2">
+    <label>Check previous request log</label>
     <select>
-      <option value="" disabled selected>Choose your option</option>
+      <option value="" disabled selected></option>
       <option value="1">Option 1</option>
       <option value="2">Option 2</option>
       <option value="3">Option 3</option>
     </select>
-    <br>
-    <label>Materialize Select</label>
   </div>
   <table class="striped centered">
     <thead>
@@ -33,3 +35,4 @@
       <% end %>
     </tbody>
   </table>
+</div>
