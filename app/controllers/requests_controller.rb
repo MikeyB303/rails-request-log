@@ -26,7 +26,15 @@ class RequestsController < ApplicationController
     :in_system? => params[:requests][:in_library]
   }
   request = Request.create(request_params)
-  redirect_to root_path  
+  redirect_to requests_path  
+  end
+
+  def show
+    log = Requestlog.find_by id: params[:id]
+    @logs = Requestlog.all
+    @requests = log.requests
+    @month = Date::MONTHNAMES[log.month.to_i]
+    @year = log.year
   end
 
   private
