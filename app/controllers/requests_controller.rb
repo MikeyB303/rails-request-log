@@ -1,10 +1,7 @@
 class RequestsController < ApplicationController
   def index
     current_log = new_log_or_nah(Time.now.month, Time.now.year)
-    @logs = Requestlog.all
-    @requests = current_log.requests
-    @month = Date::MONTHNAMES[current_log.month.to_i]
-    @year = current_log.year
+    redirect_to request_path(current_log)
   end
 
   def new
@@ -30,11 +27,11 @@ class RequestsController < ApplicationController
   end
 
   def show
-    log = Requestlog.find_by id: params[:id]
+    @current_log = Requestlog.find_by id: params[:id]
     @logs = Requestlog.all
-    @requests = log.requests
-    @month = Date::MONTHNAMES[log.month.to_i]
-    @year = log.year
+    @requests = @current_log.requests
+    @month = Date::MONTHNAMES[@current_log.month.to_i]
+    @year = @current_log.year
   end
 
   private
