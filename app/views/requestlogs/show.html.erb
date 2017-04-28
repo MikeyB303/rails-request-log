@@ -1,0 +1,41 @@
+<div class="row">
+  <h1 class="center-align">
+    <% if @current_log == Requestlog.last && @current_log == Requestlog.first  %>
+      <%="#{@month} #{@year}"%> Requests
+    <% elsif @current_log == Requestlog.last %>
+      <a href="<%= (@current_log.id - 1) %>"><i class="material-icons">chevron_left</i></a>
+      <%="#{@month} #{@year}"%> Requests
+    <% elsif @current_log == Requestlog.first%>
+      <%="#{@month} #{@year}"%> Requests
+      <a href="<%= (@current_log.id + 1) %>"><i class="material-icons">chevron_right</i></a>
+    <% else %>
+      <a href="<%= (@current_log.id - 1) %>"><i class="material-icons">chevron_left</i></a>
+      <%="#{@month} #{@year}"%> Requests
+      <a href="<%= (@current_log.id + 1) %>"><i class="material-icons">chevron_right</i></a>    
+    <% end %>
+  </h1>
+  <table class="striped centered">
+    <thead>
+      <tr>
+        <th>Artist</th>
+        <th>Song</th>
+        <th>Genre</th>
+        <th>Request Source</th>
+        <th>In Library?</th>
+        <th>Requested On</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @requests.each do |request| %>
+        <tr>
+          <td> <%= (Artist.find_by id: request.artist_id).name %> </td>
+          <td> <%= (Song.find_by id: request.song_id).title %> </td>
+          <td> <%= (Genre.find_by id: request.genre_id).title %> </td>
+          <td> <%= (Source.find_by id: request.source_id).name %> </td>
+          <td> <%= request.in_system? %> </td>
+          <td> <%= request.created_at.ctime %> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

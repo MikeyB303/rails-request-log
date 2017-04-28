@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :new_artist_or_nah, :new_song_or_nah, :new_genre_or_nah, :new_source_or_nah
+  helper_method :new_artist_or_nah, :new_song_or_nah, :new_genre_or_nah, :new_source_or_nah, :new_month_or_nah
 
   # Could probably smash these into some kind of
   # new_entry_or_nah that would take an object name and param
@@ -38,5 +38,15 @@ class ApplicationController < ActionController::Base
     else
       source
     end 
-  end          
+  end 
+
+  def new_log_or_nah(current_month, current_year)
+    log = Requestlog.find_by(month: current_month.to_s, year: current_year.to_s)
+    if log == nil
+      Requestlog.create(month: current_month.to_s, year: current_year.to_s)
+    else
+      log
+    end     
+  end
+
 end
