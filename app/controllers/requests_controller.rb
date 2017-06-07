@@ -1,6 +1,7 @@
 class RequestsController < ApplicationController
 
   def new
+    @options = [['True', 'true'], ['False', 'false']]
   end  
 
   def create
