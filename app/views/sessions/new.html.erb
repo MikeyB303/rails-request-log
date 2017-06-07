@@ -1,0 +1,17 @@
+<h3>Log in</h3>
+<%= render partial: './errors', locals: {errors: @errors} %>
+<div class = "row">
+  <%= form_for :sessions, url: sessions_path, class: 'col s12' do |f| %>
+      <div class="input-field col s12">
+        <%= f.text_field :username, class: 'validate', placeholder: 'Username' %>
+      </div>
+
+      <div class="input-field col s12">
+        <%= f.password_field :password, class: 'validate', placeholder: 'Password' %>
+      </div>
+
+      <div class="input-field col s12">
+        <%= f.submit 'Log In', class: 'btn waves-effect waves-light' %>
+      </div>
+<% end %>
+</div>

@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :new_artist_or_nah, :new_song_or_nah, :new_genre_or_nah, :new_source_or_nah, :new_month_or_nah
+  before_action :require_login
 
   # Could probably smash these into some kind of
   # new_entry_or_nah that would take an object name and param
@@ -47,6 +48,18 @@ class ApplicationController < ActionController::Base
     else
       log
     end     
+  end
+  
+
+  def logged_in?
+    !!session[:user_id]
+  end
+  private
+
+  def require_login
+    if !logged_in?
+      redirect_to new_session_path
+    end
   end
 
 end
