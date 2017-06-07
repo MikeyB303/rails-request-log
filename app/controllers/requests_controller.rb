@@ -19,7 +19,7 @@ class RequestsController < ApplicationController
     :in_system? => params[:requests][:in_library]
   }
   request = Request.create(request_params)
-  redirect_to requestlogs_path  
+  redirect_to requestlog_path(log.id)  
   end
 
   private
