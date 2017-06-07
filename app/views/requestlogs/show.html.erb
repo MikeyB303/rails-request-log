@@ -28,14 +28,88 @@
     <tbody>
       <% @requests.each do |request| %>
         <tr>
-          <td> <%= (Artist.find_by id: request.artist_id).name %> </td>
-          <td> <%= (Song.find_by id: request.song_id).title %> </td>
-          <td> <%= (Genre.find_by id: request.genre_id).title %> </td>
-          <td> <%= (Source.find_by id: request.source_id).name %> </td>
+          <td> <%= request.artist.name %> </td>
+          <td> <%= request.song.title %> </td>
+          <td> <%= request.genre.title %> </td>
+          <td> <%= request.source.name %> </td>
           <td> <%= request.in_system? %> </td>
           <td> <%= request.created_at.ctime %> </td>
         </tr>
       <% end %>
     </tbody>
   </table>
+</div>
+<div class="divider"></div>
+<h1 class="center-align">Analytics</h1>
+<div class="container">
+  <div class="row">
+    <table class="col s2">
+      <thead>
+        <tr>
+          <th>Artist</th>
+          <th>Request Total</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% artist_request_totals = @requests.group(:artist_id).count %>
+      <% @current_artists.each do |artist| %>
+        <tr>
+          <td> <%= artist.name %> </td>
+          <td> <%= artist_request_totals[artist.id] %> </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <table class="col s2 push-s1">
+      <thead>
+        <tr>
+          <th>Song</th>
+          <th>Request Total</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% song_request_totals = @requests.group(:song_id).count %>
+      <% @current_songs.each do |song| %>
+        <tr>
+          <td> <%= song.title %> </td>
+          <td> <%= song_request_totals[song.id] %> </td>
+        </tr>
+      <% end %>
+      </tbody>    
+    </table>         
+    <table class="col s2 push-s2">
+      <thead>
+        <tr>
+          <th>Genre</th>
+          <th>Request Total</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% genre_request_totals = @requests.group(:genre_id).count %>
+      <% @current_genres.each do |genre| %>
+        <tr>
+          <td> <%= genre.title %> </td>
+          <td> <%= genre_request_totals[genre.id] %> </td>
+        </tr>
+      <% end %>
+      </tbody>  
+    </table>
+    <table class="col s2 push-s3">
+      <thead>
+        <tr>
+          <th>Source</th>
+          <th>Request Total</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% source_request_totals = @requests.group(:source_id).count %>
+      <% @current_sources.each do |source| %>
+        <tr>
+          <td> <%= source.name %> </td>
+          <td> <%= source_request_totals[source.id] %> </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>         
+  </div>
 </div>
