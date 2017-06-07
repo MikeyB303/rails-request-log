@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root 'home#index'
   resources :requests, only: [:new, :create]
   resources :requestlogs, only: [:index, :show]
+  resources :sessions, only: [:new, :create, :destroy]
 end
