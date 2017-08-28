@@ -40,10 +40,10 @@
   </table>
 </div>
 <div class="divider"></div>
-<h1 class="center-align">Analytics</h1>
+<h1 class="center-align">Request Analytics</h1>
 <div class="container">
   <div class="row">
-    <table class="col s2">
+    <table class="col s3">
       <thead>
         <tr>
           <th>Artist</th>
@@ -60,7 +60,7 @@
       <% end %>
       </tbody>
     </table>
-    <table class="col s2 push-s1">
+    <table class="col s3">
       <thead>
         <tr>
           <th>Song</th>
@@ -77,7 +77,7 @@
       <% end %>
       </tbody>    
     </table>         
-    <table class="col s2 push-s2">
+    <table class="col s3">
       <thead>
         <tr>
           <th>Genre</th>
@@ -94,7 +94,7 @@
       <% end %>
       </tbody>  
     </table>
-    <table class="col s2 push-s3">
+    <table class="col s3">
       <thead>
         <tr>
           <th>Source</th>
@@ -111,5 +111,62 @@
       <% end %>
       </tbody>
     </table>         
+  </div>
+  <div class="divider"></div>
+<h1 class="center-align">Listener Demographics</h1>
+<div class="container">
+  <div class="row">
+    <table class="col s4">
+      <thead>
+        <tr>
+          <th class="center-align">Average Listener Age</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="center-align"> <%= @listener_average_age %> </td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="col s4">
+      <thead>
+        <tr>
+          <th>Gender</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Male</td>
+          <td> <%= @current_male_listeners %> </td>
+        </tr>
+        <tr>
+          <td>Female</td>
+          <td> <%= @current_female_listeners %> </td>
+        </tr>
+        <tr>
+          <td>Other</td>
+          <td> <%= @current_other_gendered_listeners %> </td>
+        </tr>
+      </tbody>    
+    </table>         
+    <table class="col s4">
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Student</td>
+          <td> <%= @current_ISU_students %> </td>
+        </tr>
+        <tr>
+          <td>Non-Student</td>
+          <td> <%= @current_non_ISU_students %> </td>
+        </tr>
+      </tbody>  
+    </table>        
   </div>
 </div>

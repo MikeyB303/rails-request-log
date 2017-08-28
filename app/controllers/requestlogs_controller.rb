@@ -12,6 +12,7 @@ class RequestlogsController < ApplicationController
     songs = Song.all
     genres = Genre.all
     sources = Source.all
+    listener_demographics = Listener.all
     
     @current_artists = []
     artists.each do |artist|
@@ -41,6 +42,42 @@ class RequestlogsController < ApplicationController
       end
     end
 
-  end
+    @current_listener_demographics = []
+    listener_demographics.each do |listener|
+      if listener.request.requestlog_id == @current_log.id
+        @current_listener_demographics << listener
+      end
+    end
+    
+    listener_age_total = 0
+    @current_listener_demographics.each do |listener|
+      if listener.age.to_i != false
+        listener_age_total += listener.age.to_i
+      end
+    end
+    @listener_average_age = listener_age_total / @current_listener_demographics.length
 
+    
+    @current_male_listeners = 0
+    @current_female_listeners = 0
+    @current_other_gendered_listeners = 0
+    @current_listener_demographics.each do |listener|
+      if listener.gender == "Male"
+        @current_male_listeners += 1
+      elsif listener.gender == "Female"
+        @current_female_listeners += 1
+      else
+        @current_other_gendered_listeners += 1
+      end
+    end
+    @current_ISU_students = 0
+    @current_non_ISU_students = 0
+    @current_listener_demographics.each do |listener|
+      if listener.on_campus? == true
+        @current_ISU_students += 1
+      else
+        @current_non_ISU_students += 1
+      end
+    end
+  end
 end
