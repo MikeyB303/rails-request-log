@@ -4,33 +4,53 @@ class RequestsController < ApplicationController
   end  
 
   def create
-    p params[:requests]
+
+    @errors = []
+
+    if params[:requests][:artist] == ''
+      @errors << "Please fill in the artist"
+    end
+
+    if params[:requests][:song] == ''
+      @errors << "Please fill in the song"
+    end
+
+    if params[:requests][:genre] == ''
+      @errors << "Please fill in the genre"
+    end
 
     artist = new_artist_or_nah(params[:requests][:artist])
     song = new_song_or_nah(params[:requests][:song])
     genre = new_genre_or_nah(params[:requests][:genre])
     source = new_source_or_nah(params[:requests][:source])
-    listener = Listener.create!(age: params[:requests][:age], gender: params[:requests][:gender], on_campus?: params[:requests][:on_campus])
     log = new_log_or_nah(Time.now.month, Time.now.year)
 
-    request_params = {
-    :song_id => song.id,
-    :artist_id => artist.id,
-    :genre_id => genre.id,
-    :source_id => source.id,
-    :requestlog_id => log.id,
-    :listener_id => listener.id,
-    :in_system? => params[:requests][:in_library]
-    }
+    if params[:requests][:age] == ''
+      params[:requests][:age] = "N/A"
+    end
 
-    request = Request.new(request_params)
-    if request.save
-      redirect_to requestlog_path(log.id)
-    else
-      request.save!
-      @errors = ["Something fucked up"]
+    if params[:requests][:gender] == 'Gender'
+      params[:requests][:gender] = "N/A"
+    end
+
+    listener = Listener.new(age: params[:requests][:age], gender: params[:requests][:gender], on_campus?: params[:requests][:on_campus])
+    
+    if @errors.length > 0
       render new_request_path
-    end  
+    else
+      listener.save
+      request_params = {
+        :song_id => song.id,
+        :artist_id => artist.id,
+        :genre_id => genre.id,
+        :source_id => source.id,
+        :requestlog_id => log.id,
+        :listener_id => listener.id,
+        :in_system? => params[:requests][:in_library]
+      }
+      request = Request.create(request_params)
+      redirect_to requestlog_path(log.id)
+    end 
   end
 
   private
