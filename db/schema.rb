@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170427164134) do
+ActiveRecord::Schema.define(version: 20170820193247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(version: 20170427164134) do
 
   create_table "genres", force: :cascade do |t|
     t.string   "title",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "listeners", force: :cascade do |t|
+    t.string   "age",        null: false
+    t.string   "gender",     null: false
+    t.boolean  "on_campus?"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -40,6 +48,7 @@ ActiveRecord::Schema.define(version: 20170427164134) do
     t.integer  "genre_id",      null: false
     t.integer  "source_id",     null: false
     t.integer  "requestlog_id", null: false
+    t.integer  "listener_id",   null: false
     t.boolean  "in_system?"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
